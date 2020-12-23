@@ -1,1 +1,6 @@
 rootProject.name = 'kalah'
+
+include 'kalah-cli'
+include 'kalah-client'
+include 'kalah-model'
+include 'kalah-server'
