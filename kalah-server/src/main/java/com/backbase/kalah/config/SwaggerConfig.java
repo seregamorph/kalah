@@ -25,7 +25,7 @@ public class SwaggerConfig {
         val restApiDescription = ClasspathResources.readString("rest-api.md");
         return new OpenAPI()
                 .info(new Info()
-                        .title("Demo API Documentation")
+                        .title("Kalah API Documentation")
                         .description(restApiDescription)
                         .version("1.0"))
                 .externalDocs(new ExternalDocumentation()

@@ -10,5 +10,5 @@ rootProject.name = 'kalah'
 
 include 'kalah-cli'
 include 'kalah-client'
-include 'kalah-model'
+include 'kalah-common'
 include 'kalah-server'
