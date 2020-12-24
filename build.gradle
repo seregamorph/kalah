@@ -1,3 +1,4 @@
+//import org.gradle.api.tasks.testing.logging.TestLogEvent.*
 
 buildscript {
 	repositories {
@@ -35,6 +36,7 @@ subprojects {
 
 	project.ext {
 		springBootVersion = '2.4.1'
+		springdocOpenapiVersion = '1.5.2'
 	}
 
 	dependencyManagement {
@@ -53,5 +55,7 @@ subprojects {
 
 	test {
 		useJUnitPlatform()
+		testLogging.events = ['PASSED', 'SKIPPED', 'FAILED']
+		testLogging.showExceptions = true
 	}
 }
