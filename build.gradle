@@ -1,61 +1,68 @@
 //import org.gradle.api.tasks.testing.logging.TestLogEvent.*
 
 buildscript {
-	repositories {
-		mavenCentral()
-	}
+    repositories {
+        mavenCentral()
+    }
 
-	dependencies {
-		classpath 'io.spring.gradle:dependency-management-plugin:1.0.10.RELEASE'
-	}
+    dependencies {
+        classpath 'io.spring.gradle:dependency-management-plugin:1.0.10.RELEASE'
+    }
 }
 
 subprojects {
-	apply plugin: 'java'
-	apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'java'
+    apply plugin: 'io.spring.dependency-management'
 
-	sourceCompatibility = 1.8
-	targetCompatibility = 1.8
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
 
-	group = 'com.backbase'
-	version = '0.0.1-SNAPSHOT'
+    group = 'com.backbase'
+    version = '0.0.1-SNAPSHOT'
 
-	tasks.withType(JavaCompile) {
-		options.encoding = 'UTF-8'
-	}
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
 
-	repositories {
-		mavenCentral()
-	}
+    repositories {
+        mavenCentral()
+    }
 
-	configurations {
-		compileOnly {
-			extendsFrom annotationProcessor
-		}
-	}
+    configurations {
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+    }
 
-	project.ext {
-		springBootVersion = '2.4.1'
-		springdocOpenapiVersion = '1.5.2'
-	}
+    project.ext {
+        springBootVersion = '2.4.1'
+        springdocOpenapiVersion = '1.5.2'
+    }
 
-	dependencyManagement {
-		imports {
-			mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
-		}
-	}
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
+        }
+        dependencies {
+            dependency 'com.google.code.findbugs:annotations:3.0.0'
+        }
+    }
 
-	dependencies {
-		compileOnly 'org.projectlombok:lombok'
-		annotationProcessor 'org.projectlombok:lombok'
+    dependencies {
+        compileOnly 'org.projectlombok:lombok'
+        testCompileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+        testAnnotationProcessor 'org.projectlombok:lombok'
 
-		testImplementation 'org.junit.jupiter:junit-jupiter-api'
-	    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
-	}
+        testImplementation 'org.junit.jupiter:junit-jupiter-api'
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    }
 
-	test {
-		useJUnitPlatform()
-		testLogging.events = ['PASSED', 'SKIPPED', 'FAILED']
-		testLogging.showExceptions = true
-	}
+    test {
+        useJUnitPlatform()
+        testLogging.events = ['PASSED', 'SKIPPED', 'FAILED']
+        testLogging.showExceptions = true
+    }
 }
+
+defaultTasks = ["clean", "build"]

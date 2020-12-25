@@ -1,18 +1,17 @@
-
 plugins {
     id 'org.springframework.boot'
-	id "com.gorylenko.gradle-git-properties" version "2.2.2"
+    id "com.gorylenko.gradle-git-properties" version "2.2.2"
 }
 
 dependencies {
-	implementation project(":kalah-common")
+    implementation project(":kalah-common")
 
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
-	implementation "org.springdoc:springdoc-openapi-ui:${springdocOpenapiVersion}"
-	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation "org.springdoc:springdoc-openapi-ui:${springdocOpenapiVersion}"
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
-	runtimeOnly 'com.h2database:h2'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    runtimeOnly 'com.h2database:h2'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 }
