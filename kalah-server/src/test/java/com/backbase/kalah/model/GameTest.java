@@ -1,11 +1,9 @@
 package com.backbase.kalah.model;
 
-import lombok.val;
 import org.junit.jupiter.api.Test;
 
-import java.util.TreeMap;
-
 import static com.backbase.kalah.model.Game.modulusPitId;
+import static com.backbase.kalah.model.Game.oppositePitId;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GameTest {
@@ -14,22 +12,7 @@ class GameTest {
     void shouldInitDesk() {
         Game game = new Game(6);
 
-        val pits = new TreeMap<Integer, Integer>();
-        pits.put(1, 6);
-        pits.put(2, 6);
-        pits.put(3, 6);
-        pits.put(4, 6);
-        pits.put(5, 6);
-        pits.put(6, 6);
-        pits.put(7, 0);
-        pits.put(8, 6);
-        pits.put(9, 6);
-        pits.put(10, 6);
-        pits.put(11, 6);
-        pits.put(12, 6);
-        pits.put(13, 6);
-        pits.put(14, 0);
-        assertEquals(pits, game.getPits());
+        assertEquals(PitUtils.pits(6, 6, 6, 6, 6, 6, 0, 6, 6, 6, 6, 6, 6, 0), game.getPits());
     }
 
     @Test
@@ -39,6 +22,14 @@ class GameTest {
         assertEquals(14, modulusPitId(14));
         assertEquals(1, modulusPitId(15));
         assertEquals(2, modulusPitId(30));
+    }
+
+    @Test
+    void oppositePitIdShouldBeEvaluated() {
+        assertEquals(1, oppositePitId(13));
+        assertEquals(6, oppositePitId(8));
+        assertEquals(13, oppositePitId(1));
+        assertEquals(8, oppositePitId(6));
     }
 
 }

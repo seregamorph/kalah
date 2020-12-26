@@ -4,6 +4,7 @@ import lombok.val;
 
 import java.util.SortedMap;
 import java.util.TreeMap;
+import java.util.stream.Stream;
 
 /**
  * Game desk state.
@@ -40,6 +41,10 @@ public class Game {
         return new TreeMap<>(pits);
     }
 
+    public boolean isComplete() {
+        return complete;
+    }
+
     public void makeMove(int pitId) {
         if (complete) {
             throw new IllegalArgumentException("Game is complete");
@@ -57,27 +62,63 @@ public class Game {
             throw new IllegalArgumentException("Pit " + pitId + " has 0 stones");
         }
         pits.put(pitId, 0);
-        int pos = pitId + 1;
+        int pos = pitId;
         while (stones > 0) {
+            pos++;
             int putPitId = modulusPitId(pos);
             if (otherPitPlayer.kalahPitId() == putPitId) {
                 // it is other player's kalah, skip it
                 continue;
             }
             stones--;
-            int pitStones = pits.get(putPitId);
-            pits.put(putPitId, pitStones + 1);
-            // last move
+            int putPitStones = pits.get(putPitId);
+            pits.put(putPitId, putPitStones + 1);
+            // it was last stone
             if (stones == 0) {
-                if (pitPlayer.pitIds()
-                        .map(pits::get)
-                        .allMatch(Integer.valueOf(0)::equals)) {
-                    // game is over
-                    complete = true;
-
+                if (putPitId == pitPlayer.kalahPitId()) {
+                    // players kalah - one more turn
+                    // not switching currentPlayer
+                } else {
+                    // your empty pit
+                    if (pitPlayer.includesPitId(putPitId) && putPitStones == 0) {
+                        int oppositePitId = oppositePitId(putPitId);
+                        int oppositeStones = pits.get(oppositePitId);
+                        if (oppositeStones > 0) {
+                            // take your and opposite
+                            pits.put(pitPlayer.kalahPitId(), pits.get(pitPlayer.kalahPitId())
+                                    + 1 + oppositeStones);
+                            pits.put(putPitId, 0);
+                            pits.put(oppositePitId, 0);
+                        }
+                    }
+                    currentPlayer = currentPlayer.otherPlayerId();
                 }
+                handleGameOver();
             }
         }
+    }
+
+    private void handleGameOver() {
+        boolean gameIsOver = Stream.of(PlayerId.values())
+                .anyMatch(playerId -> playerId.pitIds()
+                        .map(pits::get)
+                        .allMatch(Integer.valueOf(0)::equals));
+
+        if (gameIsOver) {
+            complete = true;
+            for (val playerId : PlayerId.values()) {
+                playerId.pitIds().forEach(pitId -> {
+                    pits.put(playerId.kalahPitId(), pits.get(playerId.kalahPitId())
+                            + pits.get(pitId));
+                    pits.put(pitId, 0);
+                });
+            }
+        }
+    }
+
+    static int oppositePitId(int pitId) {
+        assert pitId % 7 != 0;
+        return 14 - pitId;
     }
 
     static int modulusPitId(int pitId) {
