@@ -21,8 +21,6 @@ public class Game {
      */
     private PlayerId currentPlayer;
 
-    private boolean complete;
-
     /**
      * Init desk.
      *
@@ -41,14 +39,7 @@ public class Game {
         return new TreeMap<>(pits);
     }
 
-    public boolean isComplete() {
-        return complete;
-    }
-
     public void makeMove(int pitId) {
-        if (complete) {
-            throw new IllegalArgumentException("Game is complete");
-        }
         val pitPlayer = PlayerId.getPlayerId(pitId);
         val otherPitPlayer = pitPlayer.otherPlayerId();
         if (currentPlayer == null) {
@@ -105,7 +96,6 @@ public class Game {
                         .allMatch(Integer.valueOf(0)::equals));
 
         if (gameIsOver) {
-            complete = true;
             for (val playerId : PlayerId.values()) {
                 playerId.pitIds().forEach(pitId -> {
                     pits.put(playerId.kalahPitId(), pits.get(playerId.kalahPitId())
