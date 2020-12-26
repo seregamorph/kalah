@@ -8,6 +8,7 @@ import lombok.val;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,6 +21,9 @@ import static com.backbase.kalah.controllers.ControllerConstants.PARAM_ID;
 public class GameRestController extends AbstractRestController {
 
     static final String ENDPOINT = "/games";
+
+    private static final String PARAM_PIT_ID = "pitId";
+    private static final String ENDPOINT_MOVE = ENDPOINT_ID + "/pits/{" + PARAM_PIT_ID + "}";
 
     private final GameService gameService;
 
@@ -35,10 +39,19 @@ public class GameRestController extends AbstractRestController {
         return map(game);
     }
 
+    @PutMapping(ENDPOINT_MOVE)
+    public GameDto move(@PathVariable(PARAM_ID) long gameId,
+                        @PathVariable(PARAM_PIT_ID) int pitId) {
+        val game = gameService.getById(gameId);
+        game.makeMove(pitId);
+        return map(game);
+    }
+
     private GameDto map(Game game) {
         val uri = locationById(game.getId());
         return new GameDto()
                 .setId(game.getId())
-                .setUri(uri);
+                .setUri(uri)
+                .setStatus(game.getPits().asMap());
     }
 }

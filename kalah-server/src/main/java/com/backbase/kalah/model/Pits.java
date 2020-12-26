@@ -6,6 +6,7 @@ import org.springframework.util.Assert;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
@@ -37,6 +38,10 @@ public class Pits {
 
     public void put(int pitId, int stones) {
         pits.put(pitId, stones);
+    }
+
+    public Map<Integer, Integer> asMap() {
+        return new TreeMap<>(pits);
     }
 
     public List<Integer> asList() {
