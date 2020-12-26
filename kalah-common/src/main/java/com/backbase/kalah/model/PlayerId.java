@@ -1,12 +1,16 @@
 package com.backbase.kalah.model;
 
+import lombok.Getter;
+
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public enum PlayerId {
-    FIRST(0),
-    SECOND(1);
+    FIRST(1),
+    SECOND(2);
 
+    @Getter
+    private final int num;
     /**
      * Inclusive (1 or 8)
      */
@@ -17,8 +21,9 @@ public enum PlayerId {
      */
     private final int endPitId;
 
-    PlayerId(int index) {
-        beginPitId = index * 7 + 1;
+    PlayerId(int num) {
+        this.num = num;
+        beginPitId = (num - 1) * 7 + 1;
         endPitId = beginPitId + 6;
     }
 
@@ -44,5 +49,15 @@ public enum PlayerId {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(
                         String.format("Wrong pitId %d, should be in interval [1..14]", pitId)));
+    }
+
+    public static PlayerId fromNum(int num) {
+        if (num == 0) {
+            return null;
+        }
+        return Stream.of(values())
+                .filter(playerId -> playerId.getNum() == num)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Illegal player num " + num));
     }
 }

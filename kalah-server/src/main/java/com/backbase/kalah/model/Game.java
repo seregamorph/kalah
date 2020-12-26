@@ -1,25 +1,40 @@
 package com.backbase.kalah.model;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import lombok.val;
 
-import java.util.SortedMap;
-import java.util.TreeMap;
 import java.util.stream.Stream;
 
 /**
  * Game desk state.
  */
+@RequiredArgsConstructor
 public class Game {
 
     /**
      * key: 1-based pitId, value: count of stones in the pit
      */
-    private final SortedMap<Integer, Integer> pits;
+    @Getter
+    private final Pits pits;
+
+    @Getter
+    @Setter
+    private Long id;
 
     /**
      * Current player. Initially null, set on first turn (either First or Second player).
      */
+    @Setter
     private PlayerId currentPlayer;
+
+    /**
+     * Serialization version to avoid data race
+     */
+    @Getter
+    @Setter
+    private int version;
 
     /**
      * Init desk.
@@ -27,16 +42,7 @@ public class Game {
      * @param stones number of stones (usually 3, 4 or 6).
      */
     public Game(int stones) {
-        pits = new TreeMap<>();
-        for (PlayerId playerId : PlayerId.values()) {
-            pits.put(playerId.kalahPitId(), 0);
-            playerId.pitIds()
-                    .forEach(pitId -> pits.put(pitId, stones));
-        }
-    }
-
-    public SortedMap<Integer, Integer> getPits() {
-        return new TreeMap<>(pits);
+        this(new Pits(stones));
     }
 
     public void makeMove(int pitId) {

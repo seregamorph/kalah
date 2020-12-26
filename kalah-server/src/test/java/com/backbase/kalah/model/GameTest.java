@@ -2,6 +2,8 @@ package com.backbase.kalah.model;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static com.backbase.kalah.model.Game.modulusPitId;
 import static com.backbase.kalah.model.Game.oppositePitId;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -12,7 +14,7 @@ class GameTest {
     void shouldInitDesk() {
         Game game = new Game(6);
 
-        assertEquals(PitUtils.pits(6, 6, 6, 6, 6, 6, 0, 6, 6, 6, 6, 6, 6, 0), game.getPits());
+        assertEquals(Arrays.asList(6, 6, 6, 6, 6, 6, 0, 6, 6, 6, 6, 6, 6, 0), game.getPits().asList());
     }
 
     @Test

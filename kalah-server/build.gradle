@@ -10,8 +10,11 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
     implementation "org.springdoc:springdoc-openapi-ui:${springdocOpenapiVersion}"
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'com.google.code.findbugs:annotations'
 
     runtimeOnly 'com.h2database:h2'
+    runtimeOnly 'org.flywaydb:flyway-core'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 }
