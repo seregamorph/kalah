@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import static com.backbase.kalah.controllers.ControllerConstants.ENDPOINT_ID;
 import static com.backbase.kalah.controllers.ControllerConstants.PARAM_ID;
+import static org.springframework.http.HttpStatus.CREATED;
 
 @RestController
 @RequestMapping(GameRestController.ENDPOINT)
@@ -28,6 +30,7 @@ public class GameRestController extends AbstractRestController {
     private final GameService gameService;
 
     @PostMapping
+    @ResponseStatus(CREATED)
     public GameDto create() {
         val game = gameService.createNewGame();
         return map(game);
