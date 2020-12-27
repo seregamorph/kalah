@@ -1,5 +1,6 @@
 plugins {
     id 'org.springframework.boot'
+    // hint: http://localhost:8088/manage/info
     id "com.gorylenko.gradle-git-properties" version "2.2.2"
 }
 
@@ -17,4 +18,20 @@ dependencies {
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
+}
+
+bootJar {
+    mainClassName = 'com.backbase.kalah.KalahApplication'
+}
+
+bootRun {
+    if (System.getProperty('spring.profiles.active') != null) {
+        systemProperty 'spring.profiles.active', System.getProperty('spring.profiles.active')
+    }
+    if (System.getProperty('spring.config.location') != null) {
+        systemProperty 'spring.config.location', System.getProperty('spring.config.location')
+    }
+    if (System.getProperty('server.port') != null) {
+        systemProperty 'server.port', System.getProperty('server.port')
+    }
 }

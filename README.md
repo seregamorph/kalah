@@ -1,5 +1,4 @@
-# Analysis
-## Technical decisions
+# Kalah
 ### Server
 - Java 8 plus Lombok
 - gradle
@@ -17,3 +16,15 @@ JdbcTemplate is used. It allows to implement compare-and-set (versioned) record 
 
 ### Logging
 Default console output logging is set up. It's a microservice, so it's a responsibility of container manager to handle it. Servlet IO is printed.
+
+### Build
+To build the project:
+```shell
+./gradlew clean build
+```
+
+### Run the project locally
+```shell
+./gradlew clean bootRun -Dspring.profiles.active=h2
+```
+and open in browser http://localhost:8080/ for Swagger Doc or http://localhost:8088/manage/ for actuator.
