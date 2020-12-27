@@ -27,8 +27,8 @@ public class GameRestController extends AbstractRestController {
 
     private static final String PARAM_GAME_ID = "gameId";
     private static final String PARAM_PIT_ID = "pitId";
-    public static final String ENDPOINT_GAME_ID = "/{" + PARAM_GAME_ID + "}";
-    private static final String ENDPOINT_MOVE = ENDPOINT_GAME_ID + "/pits/{" + PARAM_PIT_ID + "}";
+    static final String ENDPOINT_GAME_ID = "/{" + PARAM_GAME_ID + "}";
+    static final String ENDPOINT_MOVE = ENDPOINT_GAME_ID + "/pits/{" + PARAM_PIT_ID + "}";
 
     private final GameService gameService;
 
