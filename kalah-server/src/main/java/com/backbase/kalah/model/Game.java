@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.val;
 
+import javax.annotation.Nullable;
 import java.util.stream.Stream;
 
 /**
@@ -26,6 +27,8 @@ public class Game {
     /**
      * Current player. Initially null, set on first turn (either First or Second player).
      */
+    @Nullable
+    @Getter
     @Setter
     private PlayerId currentPlayer;
 
@@ -52,7 +55,7 @@ public class Game {
             // first move
             currentPlayer = pitPlayer;
         } else if (currentPlayer != pitPlayer) {
-            throw new IllegalArgumentException("It's " + currentPlayer + " move");
+            throw new IllegalArgumentException("It should be " + currentPlayer + " player move");
         }
         int stones = pits.get(pitId);
         if (stones == 0) {

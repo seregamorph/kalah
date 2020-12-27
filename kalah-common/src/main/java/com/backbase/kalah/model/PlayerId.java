@@ -48,7 +48,7 @@ public enum PlayerId {
                 .filter(playerId -> playerId.includesPitId(pitId))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(
-                        String.format("Wrong pitId %d, should be in interval [1..14]", pitId)));
+                        String.format("Wrong pitId %d, should be in interval [1..6] or [8..13]", pitId)));
     }
 
     public static PlayerId fromNum(int num) {

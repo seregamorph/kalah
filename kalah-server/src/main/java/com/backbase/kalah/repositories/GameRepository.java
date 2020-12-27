@@ -47,4 +47,25 @@ public class GameRepository {
         }
     }
 
+    public void save(Game game) {
+        val currentPlayer = game.getCurrentPlayer();
+        val currentPlayerNum = currentPlayer == null ? 0 : currentPlayer.getNum();
+        val pitsEncoded = game.getPits().encode();
+        val updated = namedJdbc.update(
+                "UPDATE game SET " +
+                        "current_player = :current_player, " +
+                        "pits = :pits, " +
+                        "version = :next_version " +
+                        "WHERE id = :id AND " +
+                        "version = :current_version",
+                new MapSqlParameterSource()
+                        .addValue("id", game.getId())
+                        .addValue("current_player", currentPlayerNum)
+                        .addValue("pits", pitsEncoded)
+                        .addValue("current_version", game.getVersion())
+                        .addValue("next_version", game.getVersion() + 1));
+        if (updated != 1) {
+            throw new IllegalStateException("Data race detected, concurrent change in other transaction");
+        }
+    }
 }

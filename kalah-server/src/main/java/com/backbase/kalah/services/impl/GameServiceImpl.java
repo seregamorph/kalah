@@ -35,6 +35,7 @@ public class GameServiceImpl implements GameService {
     public Game makeMove(long gameId, int pitId) {
         val game = getById(gameId);
         game.makeMove(pitId);
+        gameRepository.save(game);
         return game;
     }
 }
