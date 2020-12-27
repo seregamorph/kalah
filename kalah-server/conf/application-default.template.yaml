@@ -1,0 +1,12 @@
+
+# copy this file as application-default.yaml and fill
+# it will be packed into docker image
+spring.datasource:
+  url: fill
+  driver-class-name: fill
+  username: fill
+  password: fill
+
+
+
+

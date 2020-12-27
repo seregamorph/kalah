@@ -5,6 +5,8 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
+kalah-server/conf/application-default.yaml
+
 ### STS ###
 .apt_generated
 .classpath

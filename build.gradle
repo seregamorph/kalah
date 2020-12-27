@@ -1,4 +1,3 @@
-//import org.gradle.api.tasks.testing.logging.TestLogEvent.*
 
 buildscript {
     repositories {
@@ -18,7 +17,6 @@ subprojects {
     targetCompatibility = 1.8
 
     group = 'com.backbase'
-    version = '0.0.1-SNAPSHOT'
 
     tasks.withType(JavaCompile) {
         options.encoding = 'UTF-8'
