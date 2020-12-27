@@ -42,8 +42,7 @@ public class GameRestController extends AbstractRestController {
     @PutMapping(ENDPOINT_MOVE)
     public GameDto move(@PathVariable(PARAM_ID) long gameId,
                         @PathVariable(PARAM_PIT_ID) int pitId) {
-        val game = gameService.getById(gameId);
-        game.makeMove(pitId);
+        val game = gameService.makeMove(gameId, pitId);
         return map(game);
     }
 
