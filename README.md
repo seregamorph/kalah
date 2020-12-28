@@ -23,8 +23,11 @@ To build the project:
 ./gradlew clean build
 ```
 
+### Docker management
+See [kalah-server/readme.md](kalah-server/readme.md)
+
 ### Run the project locally
 ```shell
 ./gradlew clean bootRun -Dspring.profiles.active=h2
 ```
-and open in browser http://localhost:8080/ for Swagger Doc or http://localhost:8088/manage/ for actuator.
+and open in browser [Local Home](http://localhost:8080/) for Swagger Doc or [Local actuator](http://localhost:8088/manage/) for actuator.
