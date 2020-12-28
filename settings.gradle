@@ -8,7 +8,6 @@ pluginManagement {
 
 rootProject.name = 'kalah'
 
-include 'kalah-cli'
 include 'kalah-client'
 include 'kalah-common'
 include 'kalah-server'

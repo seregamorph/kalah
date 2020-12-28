@@ -34,3 +34,11 @@ See [kalah-server/readme.md](kalah-server/readme.md)
 
 ### CI/CD
 CI/CD pipeline can be easily set up using commands described in the readme.md
+
+### TODOs
+- Implement kalah-cli - command-line interface to play in the terminal
+- Make two-client kalah. E.g. add a field with current player to response.
+- Aggregated JaCoCo coverage report
+- Log each move into a separate sql table (column `version` may be used as a pair for game_id as unique key)
+
+

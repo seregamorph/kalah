@@ -1,7 +1,7 @@
 plugins {
     id 'org.springframework.boot'
     // hint: http://localhost:8088/manage/info
-    id "com.gorylenko.gradle-git-properties" version "2.2.2"
+    id "com.gorylenko.gradle-git-properties"
 }
 
 dependencies {
@@ -20,8 +20,8 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
-bootJar {
-    mainClassName = 'com.backbase.kalah.KalahApplication'
+springBoot {
+    mainClass = 'com.backbase.kalah.KalahApplication'
 }
 
 bootRun {
