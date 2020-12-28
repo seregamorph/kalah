@@ -1,6 +1,8 @@
 
 ### Build image
+You should prepare env config. Copy `kalah-server/conf/application-default.template.properties` with name `kalah-server/conf/application-default.properties` and fill with env database settings.
 ```shell
+#from the repository root
 ./gradlew clean build
 cd kalah-server
 docker build --pull -t kalah-server -f ./docker/Dockerfile .

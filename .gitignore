@@ -5,7 +5,7 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-kalah-server/conf/application-default.yaml
+kalah-server/conf/application-default.properties
 
 ### STS ###
 .apt_generated
