@@ -1,5 +1,8 @@
 package com.backbase.kalah.controllers;
 
+import static org.springframework.http.HttpStatus.CREATED;
+
+import com.backbase.kalah.api.ApiGames;
 import com.backbase.kalah.dto.GameDto;
 import com.backbase.kalah.model.Game;
 import com.backbase.kalah.services.GameService;
@@ -15,20 +18,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import static org.springframework.http.HttpStatus.CREATED;
-
 @Tag(name = "Game")
 @RestController
-@RequestMapping(GameRestController.ENDPOINT)
+@RequestMapping(ApiGames.ENDPOINT_GAMES)
 @RequiredArgsConstructor
-public class GameRestController extends AbstractRestController {
-
-    static final String ENDPOINT = "/games";
-
-    private static final String PARAM_GAME_ID = "gameId";
-    private static final String PARAM_PIT_ID = "pitId";
-    static final String ENDPOINT_GAME_ID = "/{" + PARAM_GAME_ID + "}";
-    static final String ENDPOINT_MOVE = ENDPOINT_GAME_ID + "/pits/{" + PARAM_PIT_ID + "}";
+public class GameRestController extends AbstractRestController implements ApiGames {
 
     private final GameService gameService;
 
