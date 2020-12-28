@@ -1,5 +1,12 @@
 package com.backbase.kalah.controllers;
 
+import com.backbase.kalah.dto.GameDto;
+import lombok.val;
+import org.junit.jupiter.api.Test;
+import org.springframework.test.web.servlet.ResultMatcher;
+
+import java.util.ArrayList;
+
 import static com.backbase.kalah.api.ApiGames.ENDPOINT_GAMES;
 import static com.backbase.kalah.api.ApiGames.ENDPOINT_GAME_ID;
 import static com.backbase.kalah.api.ApiGames.ENDPOINT_MOVE;
@@ -12,13 +19,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.backbase.kalah.dto.GameDto;
-import java.util.ArrayList;
-import lombok.val;
-import org.junit.jupiter.api.Test;
-import org.springframework.test.web.servlet.ResultMatcher;
-
-class GameRestControllerIT extends AbstractRestControllerMockMvcIT {
+class GameRestControllerMockMvcIT extends AbstractRestControllerMockMvcIT {
 
     @Test
     void createGameShouldInitDeskAndGetByUri() throws Exception {
