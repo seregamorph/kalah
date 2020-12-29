@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "GET /games/1",
+			"name": "GET localhost/games/1",
 			"event": [
 				{
 					"listen": "test",
@@ -39,7 +39,7 @@
 			"response": []
 		},
 		{
-			"name": "POST /games",
+			"name": "POST localhost/games",
 			"event": [
 				{
 					"listen": "test",
@@ -73,7 +73,7 @@
 			"response": []
 		},
 		{
-			"name": "PUT /games/{{game_id}}/pits/1 (allowed)",
+			"name": "PUT localhost/games/{{game_id}}/pits/1 (allowed)",
 			"event": [
 				{
 					"listen": "test",
@@ -108,7 +108,7 @@
 			"response": []
 		},
 		{
-			"name": "PUT /games/1/pits/7 (not allowed)",
+			"name": "PUT localhost/games/1/pits/7 (not allowed)",
 			"event": [
 				{
 					"listen": "test",
@@ -139,6 +139,111 @@
 						"{{game_id}}",
 						"pits",
 						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST kalah.ngrok.io/games",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(201);",
+							"    var jsonData = JSON.parse(responseBody);",
+							"    pm.environment.set(\"game_id\", jsonData[\"id\"]);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://kalah.ngrok.io/games",
+					"protocol": "https",
+					"host": [
+						"kalah",
+						"ngrok",
+						"io"
+					],
+					"path": [
+						"games"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET kalah.ngrok.io/games/1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://kalah.ngrok.io/games/{{game_id}}",
+					"protocol": "https",
+					"host": [
+						"kalah",
+						"ngrok",
+						"io"
+					],
+					"path": [
+						"games",
+						"{{game_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT kalah.ngrok.io/games/{{game_id}}/pits/1 (allowed)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "https://kalah.ngrok.io/games/{{game_id}}/pits/1",
+					"protocol": "https",
+					"host": [
+						"kalah",
+						"ngrok",
+						"io"
+					],
+					"path": [
+						"games",
+						"{{game_id}}",
+						"pits",
+						"1"
 					]
 				}
 			},

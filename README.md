@@ -36,7 +36,7 @@ See [kalah-server/readme.md](kalah-server/readme.md)
 CI/CD pipeline can be easily set up using commands described in the readme.md
 
 ### Postman
-You can find a postman collection in `postman` subdirectory.
+You can find a postman collection in `postman` subdirectory. To keep things simple all requests are duplicated for localhost ang ngrok environments.
 
 ### TODOs
 All of this is not explicitly required, but may be useful in real life project. We can discuss it.

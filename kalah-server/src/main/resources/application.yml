@@ -16,6 +16,8 @@ management.endpoints.web:
 server:
   forward-headers-strategy: framework
 
+# We intentionally disable springdoc cache, because we can access same
+# server via http/https, local ip or ngrok reverse proxy
 springdoc:
   cache.disabled: true
 
