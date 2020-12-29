@@ -44,5 +44,5 @@ All of this is not explicitly required, but may be useful in real life project. 
 - Make two-client kalah. E.g. add a field with current player to response. Add back notifications (like webhooks), or reactive long polling subscriptions for signaling I/O (multiplayer).
 - Aggregated JaCoCo coverage report
 - Log each move into a separate sql table (column `version` may be used as a pair for game_id as unique key)
-
+- Gradle tasks to build gradle images (instead of manual commands execution)
 

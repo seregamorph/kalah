@@ -13,6 +13,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'com.google.code.findbugs:annotations'
 
+    // todo mysql/mariadb/postgres/etc. env database
     runtimeOnly 'com.h2database:h2'
     runtimeOnly 'org.flywaydb:flyway-core'
 
