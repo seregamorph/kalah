@@ -11,6 +11,12 @@ import java.util.Collections;
 
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
+/**
+ * Super-class for RestTemplate-based testing (random port HTTP).
+ * Note: class does not have rollback-only semantics.
+ *
+ * TODO: reset schema (if required).
+ */
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 class AbstractRestControllerWebIT {
 

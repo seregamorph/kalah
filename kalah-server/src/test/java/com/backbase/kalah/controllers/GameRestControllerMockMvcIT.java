@@ -52,7 +52,7 @@ class GameRestControllerMockMvcIT extends AbstractRestControllerMockMvcIT {
     void shouldNotMakeNotAllowedMove() throws Exception {
         val game = createAndValidateGame();
 
-        mockMvc.perform(put(ENDPOINT_GAMES + ENDPOINT_MOVE, game.getId(), 7))
+        mockMvc.perform(put(ENDPOINT_GAMES + ENDPOINT_MOVE, game.getId() - 1, 7))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.message").value("Wrong pitId 7, should be in interval [1..6] or [8..13]"));
 
