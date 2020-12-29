@@ -21,10 +21,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @Tag(name = "Game")
 @RestController
-@RequestMapping(ApiGames.ENDPOINT_GAMES)
+@RequestMapping(path = ApiGames.ENDPOINT_GAMES, produces = APPLICATION_JSON_VALUE)
 @RequiredArgsConstructor
 public class GameRestController extends AbstractRestController implements ApiGames {
 
