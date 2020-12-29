@@ -10,7 +10,7 @@ VOLUME $SERVICE_HOME/local_conf
 
 COPY docker/run-service.sh bin/
 COPY build/libs/kalah-server.jar $SERVICE_HOME/lib/
-COPY conf conf
+COPY conf/application-default.properties conf/
 
 RUN useradd -m kalah-server && \
     chmod +x $SERVICE_HOME/bin/*.sh
