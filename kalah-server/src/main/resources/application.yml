@@ -16,5 +16,8 @@ management.endpoints.web:
 server:
   forward-headers-strategy: framework
 
+springdoc:
+  cache.disabled: true
+
 #logging.level:
 #  org.springframework.web.client.RestTemplate: DEBUG
