@@ -1,4 +1,7 @@
 
 dependencies {
     implementation 'com.google.code.findbugs:annotations'
+
+    // no inherit
+    compileOnly "io.swagger.core.v3:swagger-annotations:${swaggerVersion}"
 }
